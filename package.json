@@ -1,0 +1,32 @@
+{
+    "name": "eligo",
+    "description": "",
+    "version": "0.0.0",
+    "keywords": [],
+    "main": "./node_modules/eligo/index.js",
+    "dependencies": {
+        "ambulo": "0.1.x"
+    },
+    "devDependencies": {
+        "mocha": "1.7.x",
+        "should": "1.2.x",
+        "sake": "0.1.x",
+        "ejs": "0.8.x"
+    },
+    "bundledDependencies": [
+        "eligo"
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://github.com/jhamlet/node-eligo/raw/master/LICENSE"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/jhamlet/node-eligo.git"
+    },
+    "bugs": {
+        "url": "http://github.com/jhamlet/node-eligo/issues"
+    }
+}
