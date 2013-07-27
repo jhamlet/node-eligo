@@ -1,17 +1,21 @@
 {
     "name": "eligo",
     "description": "",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "keywords": [],
     "main": "./node_modules/eligo/index.js",
     "dependencies": {
-        "ambulo": "0.1.x"
+        "protean":   "0.1.x",
+        "tour":      "0.1.x",
+        "pstrscan":  "0.1.x",
+        "esprima":   "1.0.x",
+        "escodegen": "0.0.x",
     },
     "devDependencies": {
-        "mocha": "1.7.x",
+        "mocha":  "1.7.x",
         "should": "1.2.x",
-        "sake": "0.1.x",
-        "ejs": "0.8.x"
+        "sake":   "0.1.x",
+        "ejs":    "0.8.x"
     },
     "bundledDependencies": [
         "eligo"
