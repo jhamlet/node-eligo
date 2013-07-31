@@ -21,7 +21,11 @@ Installation
 These are installed when **eligo** is installed.
 
 ~~~
-ambulo: 0.1.x
+protean:   0.1.x
+tour:      0.1.x
+pstrscan:  0.1.x
+esprima:   1.0.x
+escodegen: 0.0.x
 ~~~
 
 
