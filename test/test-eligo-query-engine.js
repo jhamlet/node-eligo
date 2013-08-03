@@ -1,6 +1,7 @@
 /*globals describe, it, before, beforeEach */
 var should = require('should'),
     nutil = require('util'),
+    tutil = require('./utils'),
     fmt = nutil.format,
     QueryEngine = require('eligo/query-engine');
 

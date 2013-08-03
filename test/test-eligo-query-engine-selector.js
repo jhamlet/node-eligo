@@ -5,7 +5,7 @@ var should = require('should'),
     Scanner = require('eligo/query-engine/scanner'),
     operators = require('eligo/query-engine/operators');
 
-describe('Eligo - Query - Selector', function () {
+describe('Eligo - QueryEngine - Selector', function () {
     var scanner,
         selector;
     
@@ -13,44 +13,7 @@ describe('Eligo - Query - Selector', function () {
         scanner = new Scanner();
     });
     
-    describe('TYPE selector', function () {
-        it('should match the correct attribute', function () {
-            selector = new Selector('type', operators.equals, 'foo');
-            selector.test({ type: 'foo' }).should.equal(true);
-        });
-    });
-    
-    describe('ID selector', function () {
-        it('should match the correct attribute', function () {
-            selector = new Selector('id', operators.equals, 'foo');
-            selector.test({ id: 'foo' }).should.equal(true);
-        });
-    });
-    
-    describe('MEMBER selector', function () {
-        it('should match the correct attribute', function () {
-            selector = new Selector('foo', operators.equals, '*');
-            selector.test({ foo: 'foo' }).should.equal(true);
-        });
-    });
-    
-    describe('ATTRIBUTE selector', function () {
-        it('should match the correct attribute', function () {
-            selector = new Selector('foo', operators.equals, 'foo');
-            selector.test({ foo: 'foo' }).should.equal(true);
-            selector.test(null).should.equal(false);
-            selector.test().should.equal(false);
-        });
-    });
-    
-    describe('UNIVERSAL selector', function () {
-        it('should match the correct attribute', function () {
-            selector = new Selector('*');
-            selector.test({ foo: 'foo' }).should.equal(true);
-        });
-    });
-    
-    describe('.parse()', function () {
+    describe('.parse(scanner)', function () {
         
         it('should parse \'type\' selector', function () {
             scanner.setSource('foo');
@@ -92,6 +55,45 @@ describe('Eligo - Query - Selector', function () {
             selector = Selector.parse(scanner);
             selector.attribute.should.equal('foo');
             selector.value.should.equal('foo');
+        });
+    });
+    
+    describe('.test(obj)', function () {
+        describe('TYPE selector', function () {
+            it('should match the correct attribute', function () {
+                selector = new Selector('type', operators.equals, 'foo');
+                selector.test({ type: 'foo' }).should.equal(true);
+            });
+        });
+
+        describe('ID selector', function () {
+            it('should match the correct attribute', function () {
+                selector = new Selector('id', operators.equals, 'foo');
+                selector.test({ id: 'foo' }).should.equal(true);
+            });
+        });
+
+        describe('MEMBER selector', function () {
+            it('should match the correct attribute', function () {
+                selector = new Selector('foo', operators.equals, '*');
+                selector.test({ foo: 'foo' }).should.equal(true);
+            });
+        });
+
+        describe('ATTRIBUTE selector', function () {
+            it('should match the correct attribute', function () {
+                selector = new Selector('foo', operators.equals, 'foo');
+                selector.test({ foo: 'foo' }).should.equal(true);
+                selector.test(null).should.equal(false);
+                selector.test().should.equal(false);
+            });
+        });
+
+        describe('UNIVERSAL selector', function () {
+            it('should match the correct attribute', function () {
+                selector = new Selector('*');
+                selector.test({ foo: 'foo' }).should.equal(true);
+            });
         });
     });
 });

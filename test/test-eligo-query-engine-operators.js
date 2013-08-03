@@ -34,7 +34,7 @@ function test (symbol, name, token, tests) {
 //---------------------------------------------------------------------------
 // Suite
 //---------------------------------------------------------------------------
-describe('Eligo - Query - Operators', function () {
+describe('Eligo - QueryEngine - Operators', function () {
     
     test('=', 'equals', (/=/), [
         ['should return true if arguments are equal', function (op) {
