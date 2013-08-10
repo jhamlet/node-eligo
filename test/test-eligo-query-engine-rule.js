@@ -3,31 +3,26 @@ var should = require('should'),
     nutil = require('util'),
     fmt = nutil.format,
     Rule = require('eligo/query-engine/rule'),
-    Scanner = require('eligo/query-engine/scanner'),
     Jaunt = require('jaunt'),
     Path = Jaunt.Path;
 
 describe('Eligo - QueryEngine - Rule', function () {
-    var scanner = new Scanner(),
-        rule;
+    var rule;
     
     describe('.parse(scanner)', function () {
         it('simple selector', function () {
-            scanner.setSource('foo');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('foo');
             rule.length.should.equal(1);
         });
         
         it('should throw an error if given nothing to parse', function () {
-            scanner.setSource('');
             (function () {
-                Rule.parse(scanner);
+                Rule.parse('');
             }).should.throw;
         });
         
         it('descendent rule', function () {
-            scanner.setSource('foo bar');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('foo bar');
             rule.length.should.equal(3);
             rule.get(0).attribute.should.equal('type');
             rule.get(0).operator.name.should.equal('equals');
@@ -40,8 +35,7 @@ describe('Eligo - QueryEngine - Rule', function () {
         });
 
         it('child rule', function () {
-            scanner.setSource('foo > bar');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('foo > bar');
             rule.length.should.equal(3);
             rule.get(0).attribute.should.equal('type');
             rule.get(0).operator.name.should.equal('equals');
@@ -54,8 +48,7 @@ describe('Eligo - QueryEngine - Rule', function () {
         });
 
         it('sibling rule', function () {
-            scanner.setSource('foo ~ bar');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('foo ~ bar');
             rule.length.should.equal(3);
             rule.get(0).attribute.should.equal('type');
             rule.get(0).operator.name.should.equal('equals');
@@ -68,8 +61,7 @@ describe('Eligo - QueryEngine - Rule', function () {
         });
 
         it('adjacent sibling rule', function () {
-            scanner.setSource('foo + bar');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('foo + bar');
             rule.length.should.equal(3);
             rule.get(0).attribute.should.equal('type');
             rule.get(0).operator.name.should.equal('equals');
@@ -84,8 +76,7 @@ describe('Eligo - QueryEngine - Rule', function () {
         it('should handle more complicated rule', function () {
             var sels;
             
-            scanner.setSource('* foo.bar > baz[foo=foo] + baz[foo=bar] ~ buz');
-            rule = Rule.parse(scanner);
+            rule = Rule.parse('* foo.bar > baz[foo=foo] + baz[foo=bar] ~ buz');
             
             sels = rule.toArray();
             sels.length.should.equal(12);
@@ -155,8 +146,7 @@ describe('Eligo - QueryEngine - Rule', function () {
             var rule;
             
             beforeEach(function () {
-                scanner.setSource('foo bar');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('foo bar');
                 
                 path.push(tree);
                 path.push(path.tail.data.children[0]);
@@ -196,8 +186,7 @@ describe('Eligo - QueryEngine - Rule', function () {
             });
             
             it('should not pass if child does not match', function () {
-                scanner.setSource('foo > bar');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('foo > bar');
 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(false);
@@ -205,8 +194,7 @@ describe('Eligo - QueryEngine - Rule', function () {
             });
             
             it('should pass if child matches and parent matches', function () {
-                scanner.setSource('bar > buz');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('bar > buz');
 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(true);
@@ -227,16 +215,14 @@ describe('Eligo - QueryEngine - Rule', function () {
             });
             
             it('should not pass if child does not match', function () {
-                scanner.setSource('foo ~ bez');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('foo ~ bez');
 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(false);
             });
             
             it('should pass if sibling matches and other sibling matches', function () {
-                scanner.setSource('bez ~ bar');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('bez ~ bar');
                 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(true);
@@ -256,24 +242,21 @@ describe('Eligo - QueryEngine - Rule', function () {
             });
             
             it('should not pass if child does not match', function () {
-                scanner.setSource('foo + bez');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('foo + bez');
                 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(false);
             });
             
             it('should not pass if sibling matches and previous sibling does not match', function () {
-                scanner.setSource('bez + bar');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('bez + bar');
                 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(false);
             });
             
             it('should pass if sibling matches and previous sibling matches', function () {
-                scanner.setSource('foo + bar');
-                rule = Rule.parse(scanner);
+                rule = Rule.parse('foo + bar');
                 
                 cursor = path.getCursor();
                 rule.test(cursor).should.equal(true);
