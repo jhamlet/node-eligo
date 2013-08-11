@@ -3,9 +3,9 @@ var should = require('should'),
     utils = require('protean'),
     nutil = require('util'),
     fmt = nutil.format,
-    Segment = require('eligo/path-engine/segment');
+    Segment = require('eligo/path/segment');
 
-describe('Eligo - PathEngine - Segment', function () {
+describe('Eligo - Path - Segment', function () {
     
     describe('#push()', function () {
         var segment;

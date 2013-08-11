@@ -2,7 +2,7 @@
 
 var should = require('should'),
     fmt = require('util').format,
-    operators = require('eligo/query-engine/operators');
+    operators = require('eligo/query/operators');
 //---------------------------------------------------------------------------
 // Utility Test Definer
 //---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ function test (symbol, name, token, tests) {
 //---------------------------------------------------------------------------
 // Suite
 //---------------------------------------------------------------------------
-describe('Eligo - QueryEngine - Operators', function () {
+describe('Eligo - Query - Operators', function () {
     
     test('=', 'equals', (/=/), [
         ['should return true if arguments are equal', function (op) {

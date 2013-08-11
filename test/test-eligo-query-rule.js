@@ -2,11 +2,11 @@
 var should = require('should'),
     nutil = require('util'),
     fmt = nutil.format,
-    Rule = require('eligo/query-engine/rule'),
-    Jaunt = require('jaunt'),
-    Path = Jaunt.Path;
+    Rule = require('eligo/query/rule'),
+    ObjectTraverse = require('objt'),
+    Path = ObjectTraverse.Path;
 
-describe('Eligo - QueryEngine - Rule', function () {
+describe('Eligo - Query - Rule', function () {
     var rule;
     
     describe('.parse(scanner)', function () {
@@ -139,7 +139,7 @@ describe('Eligo - QueryEngine - Rule', function () {
             };
             
         beforeEach(function () {
-            path = new Path(new Jaunt());
+            path = new Path(new ObjectTraverse());
         });
         
         describe('descendent rule', function () {

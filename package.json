@@ -6,7 +6,7 @@
     "main": "./node_modules/eligo/index.js",
     "dependencies": {
         "protean":   "0.1.x",
-        "jaunt":     "0.1.x",
+        "objt":      "0.1.x",
         "pstrscan":  "0.1.x",
         "esprima":   "1.0.x",
         "escodegen": "0.0.x"

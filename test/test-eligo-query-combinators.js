@@ -1,13 +1,13 @@
 /*globals describe, it, before, beforeEach */
 var should = require('should'),
     fmt = require('util').format,
-    combinators = require('eligo/query-engine/combinators'),
-    Selector = require('eligo/query-engine/selector'),
-    Scanner = require('eligo/query-engine/scanner'),
-    Jaunt = require('jaunt'),
-    Path = Jaunt.Path;
+    combinators = require('eligo/query/combinators'),
+    Selector = require('eligo/query/selector'),
+    Scanner = require('eligo/query/scanner'),
+    ObjectTraverse = require('objt'),
+    Path = ObjectTraverse.Path;
 
-describe('Eligo - QueryEngine - Combinators', function () {
+describe('Eligo - Query - Combinators', function () {
     
     describe('#parse(scanner)', function () {
         var scanner;
@@ -87,7 +87,7 @@ describe('Eligo - QueryEngine - Combinators', function () {
                     ]
                 };
                 
-            path = new Path(new Jaunt());
+            path = new Path(new ObjectTraverse());
             path.push(objTree); // foo
             path.push(path.tail.data.children[0]); // bar
             path.push(path.tail.data.children[0]); // buz

@@ -1,11 +1,11 @@
 /*globals describe, it, before, beforeEach */
 var should = require('should'),
     fmt = require('util').format,
-    Selector = require('eligo/query-engine/selector'),
-    Scanner = require('eligo/query-engine/scanner'),
-    operators = require('eligo/query-engine/operators');
+    Selector = require('eligo/query/selector'),
+    Scanner = require('eligo/query/scanner'),
+    operators = require('eligo/query/operators');
 
-describe('Eligo - QueryEngine - Selector', function () {
+describe('Eligo - Query - Selector', function () {
     var scanner,
         selector;
     
